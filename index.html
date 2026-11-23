@@ -1,346 +1,305 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EduSkills Badge - Chiranjeevi Karthik Chopperla</title>
-    <style>
-      :root {
-        color-scheme: light;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        min-height: 100vh;
-        margin: 0;
-        display: grid;
-        place-items: center;
-        background: #eef2f6;
-        font-family: Arial, sans-serif;
-      }
-
-      main {
-        width: min(736px, calc(100vw - 32px));
-        padding: 16px 0;
-      }
-
-      img {
-        display: block;
-        width: 100%;
-        height: auto;
-        border-radius: 20px;
-        box-shadow: 0 12px 32px rgb(31 54 89 / 12%);
-      }
-
-      .badge-wrap {
-        position: relative;
-      }
-
-      .action-link {
-        position: absolute;
-        z-index: 2;
-        border: 0;
-        background: transparent;
-        padding: 0;
-        cursor: pointer;
-      }
-
-      .action-link:focus-visible {
-        outline: 3px solid #1d70b7;
-        outline-offset: 4px;
-      }
-
-      .verify {
-        left: 81%;
-        top: 10.25%;
-        width: 15%;
-        height: 3.5%;
-      }
-
-      .download {
-        left: 4%;
-        top: 30%;
-        width: 45.5%;
-        height: 4.7%;
-      }
-
-      .copy {
-        left: 51%;
-        top: 30%;
-        width: 45%;
-        height: 4.7%;
-      }
-
-      .linkedin {
-        left: 4%;
-        top: 35.7%;
-        width: 30.5%;
-        height: 4.3%;
-      }
-
-      .facebook {
-        left: 35.5%;
-        top: 35.7%;
-        width: 30.5%;
-        height: 4.3%;
-      }
-
-      .twitter {
-        left: 67%;
-        top: 35.7%;
-        width: 29%;
-        height: 4.3%;
-      }
-
-      .qr {
-        left: 6.5%;
-        top: 43.5%;
-        width: 12%;
-        height: 6.1%;
-      }
-
-      .issued-by {
-        left: 4%;
-        top: 58%;
-        width: 31%;
-        height: 3.5%;
-      }
-
-      .toast {
-        position: fixed;
-        left: 50%;
-        bottom: 24px;
-        transform: translateX(-50%);
-        padding: 10px 16px;
-        border-radius: 8px;
-        background: #1d2c4f;
-        color: white;
-        font-size: 14px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 180ms ease;
-      }
-
-      .toast.visible {
-        opacity: 1;
-      }
-
-      .verification-backdrop {
-        position: fixed;
-        inset: 0;
-        z-index: 10;
-        display: grid;
-        place-items: center;
-        background: rgb(27 33 54 / 72%);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 180ms ease;
-      }
-
-      .verification-backdrop.open {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .verification-modal {
-        width: min(470px, calc(100vw - 40px));
-        border-radius: 15px;
-        background: white;
-        box-shadow: 0 18px 50px rgb(0 0 0 / 20%);
-        color: #28354f;
-        overflow: hidden;
-      }
-
-      .verification-header {
-        height: 66px;
-        margin: 0 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid #edf0f4;
-      }
-
-      .verification-header h2 {
-        margin: 0;
-        color: #3157a6;
-        font-size: 22px;
-      }
-
-      .close-modal {
-        width: 34px;
-        height: 34px;
-        border: 0;
-        background: transparent;
-        color: #9ba3af;
-        font-size: 28px;
-        line-height: 30px;
-        cursor: pointer;
-      }
-
-      .verification-list {
-        margin: 0;
-        padding: 18px 30px 34px;
-        list-style: none;
-      }
-
-      .verification-list li {
-        position: relative;
-        min-height: 46px;
-        display: flex;
-        align-items: center;
-        padding-left: 29px;
-        font-size: 16px;
-      }
-
-      .verification-list li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        width: 12px;
-        height: 12px;
-        border: 2px solid #ff9a62;
-        border-radius: 50%;
-      }
-
-      .verification-list li.muted {
-        color: #b9bdc5;
-      }
-
-      .verification-list li.muted::before {
-        border-color: #edc4b2;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <div class="badge-wrap">
-        <img
-          src="/eduskills_badge_exact.png"
-          alt="EduSkills badge issued to Chiranjeevi Karthik Chopperla on July 29, 2026"
-        />
-        <button
-          class="action-link verify"
-          id="verify-button"
-          aria-label="Verify badge"
-        ></button>
-        <a
-          class="action-link download"
-          href="/Chiranjeevi_Karthik_Chopperla_Internship_Certificate.png"
-          download="Chiranjeevi_Karthik_Chopperla_Internship_Certificate.png"
-          aria-label="Download badge"
-        ></a>
-        <button class="action-link copy" id="copy-link" aria-label="Copy link"></button>
-        <a
-          class="action-link linkedin"
-          id="linkedin-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Share on LinkedIn"
-        ></a>
-        <a
-          class="action-link facebook"
-          id="facebook-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Share on Facebook"
-        ></a>
-        <a
-          class="action-link twitter"
-          id="twitter-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Share on Twitter"
-        ></a>
-        <a
-          class="action-link qr"
-          href="http://192.168.0.103:8080/index.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Scan or open badge verification"
-        ></a>
-        <a
-          class="action-link issued-by"
-          href="https://eduskillsfoundation.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open EduSkills"
-        ></a>
-      </div>
-    </main>
-    <div
-      class="verification-backdrop"
-      id="verification-backdrop"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="verification-title"
-    >
-      <section class="verification-modal">
-        <header class="verification-header">
-          <h2 id="verification-title">Verification</h2>
-          <button class="close-modal" id="close-verification" aria-label="Close verification">&times;</button>
-        </header>
-        <ul class="verification-list">
-          <li>Issued on July 29, 2026</li>
-          <li>Issued by EduSkills</li>
-          <li>Issued using EduSkills</li>
-          <li>Issued to Chiranjeevi Karthik Chopperla</li>
-          <li class="muted">Accepted on July 29, 2026</li>
-          <li class="muted">Last Updated July 29, 2026</li>
-        </ul>
-      </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduSkills Badge - Chiranjeevi Karthik Chopperla</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: #eef2f6;
+      color: #263653;
+      font-family: Arial, "Segoe UI", sans-serif;
+    }
+    .topbar {
+      height: 112px;
+      background: #fff;
+      border-bottom: 1px solid #e7ebef;
+      display: flex;
+      align-items: center;
+      padding: 0 4.5%;
+    }
+    .brand { display: flex; align-items: center; }
+    .brand img { width: 350px; max-width: 65vw; height: auto; }
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 38px 28px 60px;
+    }
+    .issued-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+    .user-icon {
+      width: 58px;
+      height: 58px;
+      border: 1px solid #dde4eb;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+    .user-icon svg { width: 27px; height: 27px; fill: none; stroke: #7f8794; stroke-width: 1.8; }
+    .issued-copy { flex: 1; }
+    .issued-copy .line1 { color: #697386; font-size: 17px; margin-bottom: 7px; }
+    .issued-copy strong { color: #315e82; }
+    .issued-copy .line2 { color: #8d96a5; font-size: 16px; }
+    .verify-btn {
+      width: 112px;
+      height: 52px;
+      border: 0;
+      border-radius: 8px;
+      background: #21a97a;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .verify-btn span { margin-right: 7px; }
+    .layout {
+      display: grid;
+      grid-template-columns: 43% 57%;
+      gap: 26px;
+      align-items: start;
+    }
+    .preview-card {
+      border: 1px solid #dde4ea;
+      border-radius: 15px;
+      background: #fff;
+      height: 210px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .preview-card img { width: 75%; max-height: 180px; object-fit: contain; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .action {
+      height: 54px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .action.download { background: #315ba9; color: #fff; }
+    .action.copy { border: 1px solid #d9dfe6; background: #fff; color: #313a48; }
+    .action svg { width: 20px; height: 20px; margin-right: 9px; fill: currentColor; }
+    .social {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .social a {
+      height: 54px;
+      border-radius: 7px;
+      background: #1d70b7;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .social a.twitter { background: #36a6cc; }
+    .social .mark { width: 24px; margin-right: 8px; text-align: center; font-size: 20px; }
+    .qr-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 28px;
+    }
+    .qr-row img {
+      width: 86px;
+      height: 86px;
+      border: 1px solid #dde4ea;
+      padding: 5px;
+      background: #fff;
+    }
+    .qr-text strong { display: block; color: #626a74; font-size: 15px; letter-spacing: 1px; margin-bottom: 8px; }
+    .qr-text span { color: #9aa2ab; font-size: 15px; }
+    .right { min-width: 0; }
+    .right h1 {
+      margin: 8px 0 26px;
+      color: #1d2c4f;
+      font-size: clamp(34px, 4vw, 48px);
+      line-height: 1.08;
+    }
+    .issued-by { color: #9aa2ab; font-size: 18px; }
+    .issued-by a { color: #315e82; font-weight: 700; text-decoration: none; margin-left: 8px; }
+    .description {
+      margin-top: 42px;
+      padding-top: 30px;
+      border-top: 1px solid #dfe5ea;
+    }
+    .description h2 { margin: 0 0 22px; color: #315e82; font-size: 20px; }
+    .description ul { list-style: none; margin: 0; padding: 0; }
+    .description li {
+      position: relative;
+      margin: 0 0 19px;
+      padding-left: 42px;
+      color: #626b76;
+      font-size: 17px;
+      line-height: 24px;
+    }
+    .description li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 26px;
+      height: 26px;
+      border: 2px solid #86a1c9;
+      border-radius: 50%;
+      color: #86a1c9;
+      text-align: center;
+      line-height: 23px;
+    }
+    .verification-backdrop {
+      position: fixed; inset: 0; z-index: 20;
+      display: grid; place-items: center;
+      background: rgb(27 33 54 / 72%);
+      opacity: 0; visibility: hidden;
+    }
+    .verification-backdrop.open { opacity: 1; visibility: visible; }
+    .verification-modal { width: min(470px, calc(100vw - 40px)); background: #fff; border-radius: 15px; overflow: hidden; }
+    .verification-header { height: 66px; margin: 0 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #edf0f4; }
+    .verification-header h2 { margin: 0; color: #3157a6; }
+    .close-modal { border: 0; background: none; color: #9ba3af; font-size: 28px; cursor: pointer; }
+    .verification-list { list-style: none; margin: 0; padding: 18px 30px 34px; }
+    .verification-list li { position: relative; min-height: 46px; display: flex; align-items: center; padding-left: 29px; }
+    .verification-list li::before { content: ""; position: absolute; left: 0; width: 12px; height: 12px; border: 2px solid #ff9a62; border-radius: 50%; }
+    .verification-list li.muted { color: #b9bdc5; }
+    .verification-list li.muted::before { border-color: #edc4b2; }
+    .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); padding: 10px 16px; border-radius: 8px; background: #1d2c4f; color: #fff; opacity: 0; pointer-events: none; }
+    .toast.visible { opacity: 1; }
+    @media (max-width: 760px) {
+      .topbar { height: 76px; padding: 0 20px; }
+      .brand img { width: 250px; }
+      .page { padding: 20px 16px 40px; }
+      .issued-row { gap: 10px; margin-bottom: 20px; }
+      .user-icon { width: 48px; height: 48px; }
+      .issued-copy .line1 { font-size: 14px; }
+      .issued-copy .line2 { font-size: 13px; }
+      .verify-btn { width: 82px; height: 44px; font-size: 15px; }
+      .layout { grid-template-columns: 1fr; gap: 24px; }
+      .left { order: 1; }
+      .right { order: 2; }
+      .preview-card { height: 180px; }
+      .preview-card img { width: 68%; }
+      .right h1 { font-size: 31px; margin-top: 0; }
+      .description { margin-top: 28px; }
+      .description li { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/edu_logo.png" alt="EduSkills" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<strong style=&quot;color:#315e82;font-size:38px&quot;>EduSkills</strong>')" />
     </div>
-    <div class="toast" id="toast" role="status" aria-live="polite">Link copied</div>
-
-    <script>
-      const pageUrl = window.location.href;
-      const title = "EduSkills badge issued to Chiranjeevi Karthik Chopperla";
-
-      document.getElementById("linkedin-link").href =
-        "https://www.linkedin.com/company/eduskills-foundation/";
-      document.getElementById("facebook-link").href =
-        "https://www.facebook.com/EduSkillsFoundation/";
-      document.getElementById("twitter-link").href =
-        "https://twitter.com/EduSkillsF";
-
-      document.getElementById("copy-link").addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(pageUrl);
-        } catch {
-          const input = document.createElement("textarea");
-          input.value = pageUrl;
-          document.body.appendChild(input);
-          input.select();
-          document.execCommand("copy");
-          input.remove();
-        }
-
-        const toast = document.getElementById("toast");
-        toast.classList.add("visible");
-        window.setTimeout(() => toast.classList.remove("visible"), 1800);
-      });
-
-      const verificationBackdrop = document.getElementById("verification-backdrop");
-      document.getElementById("verify-button").addEventListener("click", () => {
-        verificationBackdrop.classList.add("open");
-        document.getElementById("close-verification").focus();
-      });
-      document.getElementById("close-verification").addEventListener("click", () => {
-        verificationBackdrop.classList.remove("open");
-        document.getElementById("verify-button").focus();
-      });
-      verificationBackdrop.addEventListener("click", (event) => {
-        if (event.target === verificationBackdrop) {
-          verificationBackdrop.classList.remove("open");
-        }
-      });
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          verificationBackdrop.classList.remove("open");
-        }
-      });
-    </script>
-  </body>
+  </header>
+  <main class="page">
+    <section class="issued-row">
+      <div class="user-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg>
+      </div>
+      <div class="issued-copy">
+        <div class="line1">This badge was issued to <strong>Chiranjeevi Karthik Chopperla</strong></div>
+        <div class="line2">Date issued: July 29, 2026</div>
+      </div>
+      <button class="verify-btn" id="verify-button"><span>✓</span>Verify</button>
+    </section>
+    <section class="layout">
+      <div class="left">
+        <div class="preview-card">
+          <img src="/badge_preview_card.png" alt="Virtual Internship badge" />
+        </div>
+        <div class="actions">
+          <a class="action download" href="/Chiranjeevi_Karthik_Chopperla_Internship_Certificate.png" download>
+            <svg viewBox="0 0 24 24"><path d="M11 3h2v10l4-4 1.4 1.4L12 16.8l-6.4-6.4L7 9l4 4V3zm-7 16h16v2H4v-2z"/></svg>
+            Download
+          </a>
+          <button class="action copy" id="copy-link">
+            <svg viewBox="0 0 24 24"><path d="M8 7V3h13v13h-4v5H3V7h5zm2 0h7v7h2V5H10v2zm-5 2v10h10V9H5z"/></svg>
+            Copy Link
+          </button>
+        </div>
+        <div class="social">
+          <a href="https://www.linkedin.com/company/eduskills-foundation/" target="_blank" rel="noopener"><span class="mark">in</span>LinkedIn</a>
+          <a href="https://www.facebook.com/EduSkillsFoundation/" target="_blank" rel="noopener"><span class="mark">f</span>Facebook</a>
+          <a class="twitter" href="https://twitter.com/EduSkillsF" target="_blank" rel="noopener"><span class="mark">♥</span>Twitter</a>
+        </div>
+        <a class="qr-row" href="http://192.168.0.103:8080/index.html" target="_blank" rel="noopener" style="text-decoration:none">
+          <img src="/badge_preview_qr.png" alt="QR code" />
+          <div class="qr-text"><strong>SCAN TO VERIFY</strong><span>Quick verification using QR code</span></div>
+        </a>
+      </div>
+      <div class="right">
+        <h1>Python Fullstack Developer Virtual Internship</h1>
+        <div class="issued-by">Issued by <a href="https://eduskillsfoundation.org/" target="_blank" rel="noopener">EduSkills ↗</a></div>
+        <section class="description">
+          <h2>SKILLS</h2>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+  </main>
+  <div class="verification-backdrop" id="verification-backdrop" role="dialog" aria-modal="true" aria-labelledby="verification-title">
+    <section class="verification-modal">
+      <header class="verification-header">
+        <h2 id="verification-title">Verification</h2>
+        <button class="close-modal" id="close-verification" aria-label="Close">&times;</button>
+      </header>
+      <ul class="verification-list">
+        <li>Issued on July 29, 2026</li>
+        <li>Issued by EduSkills</li>
+        <li>Issued using EduSkills</li>
+        <li>Issued to Chiranjeevi Karthik Chopperla</li>
+        <li class="muted">Accepted on July 29, 2026</li>
+        <li class="muted">Last Updated July 29, 2026</li>
+      </ul>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status">Link copied</div>
+  <script>
+    const pageUrl = window.location.href;
+    document.getElementById("copy-link").addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(pageUrl); }
+      catch {
+        const input = document.createElement("textarea");
+        input.value = pageUrl;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+      }
+      const toast = document.getElementById("toast");
+      toast.classList.add("visible");
+      setTimeout(() => toast.classList.remove("visible"), 1800);
+    });
+    const modal = document.getElementById("verification-backdrop");
+    document.getElementById("verify-button").addEventListener("click", () => {
+      modal.classList.add("open");
+      document.getElementById("close-verification").focus();
+    });
+    document.getElementById("close-verification").addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", event => { if (event.target === modal) modal.classList.remove("open"); });
+    document.addEventListener("keydown", event => { if (event.key === "Escape") modal.classList.remove("open"); });
+  </script>
+</body>
 </html>
